@@ -31,9 +31,6 @@ def check_letter(letter, place, word, dupe):
                 return "\033[1;33;40m " + letter + " "
 
 
-            
-
-
 def check_dupes(word):
     for i in range(5):
         letter = word[i]
@@ -44,8 +41,6 @@ def check_dupes(word):
         if count > 1:
             return word[i]
     return None
-
-
 
 def print_answers(guesses):
         for i in range(len(guesses)):
@@ -64,8 +59,6 @@ def play_round(guess, answer, lives):
         lives += 1
         return False, lives, letters
     
-
-
 def main():
     valid_words, available_words = create_data("sgb-words.txt")
     checked = []
