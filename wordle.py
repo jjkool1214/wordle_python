@@ -2,6 +2,9 @@ import random
 import re
 
 GUESSES = 6
+ALPHABET = {'a':'a', 'b':'b', 'c':'c', 'd':'d', 'e':'e', 'f':'f' , 'g':'g', 
+            'h':'h', 'i':'i','j':'j','k':'k','l':'l','m':'m','n':'n','o':'o','p':'p','q':'q','r':'r',
+            's':'s','t':'t','u':'u','v':'v','w':'w','x':'x','y':'y','z':'z'}
 
 def create_data(filename):
     full_set = set()
@@ -17,8 +20,11 @@ def check_letter(letter, place, word, dupe):
             for i in range(5):    
                 if letter == word[i]:
                     if place == i:
+                        ALPHABET[letter] = "\033[1;32;40m " + letter + " "
                         return "\033[1;32;40m " + letter + " "
+                    ALPHABET[letter] = "\033[1;33;40m " + letter + " "
                     return "\033[1;33;40m " + letter + " "
+            del ALPHABET[letter]
             return "\033[1;30;40m " + letter + " "
         elif letter == dupe:
             places = set()
@@ -26,8 +32,10 @@ def check_letter(letter, place, word, dupe):
                 if letter == word[i]:
                     places.add(i)
             if place in places:
+                ALPHABET[letter] = "\033[1;32;40m " + letter + " "
                 return "\033[1;32;40m " + letter + " "
             else:
+                ALPHABET[letter] = "\033[1;33;40m " + letter + " "
                 return "\033[1;33;40m " + letter + " "
 
 
@@ -47,6 +55,10 @@ def print_answers(guesses):
             for j in range(5):
                 print(guesses[i][j], end=" ")
             print("\n")
+
+def print_alpha():
+    for key in ALPHABET:
+        print(ALPHABET[key], end=' ')
 
 def play_round(guess, answer, lives):
     letters = []
@@ -88,6 +100,7 @@ def main():
                 break
             else:
                 print_answers(checked)
+                print_alpha()
                 print("\033[1;37;40m   ")
         else:
             print("Thats not a valid word, try again!")
