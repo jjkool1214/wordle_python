@@ -59,6 +59,7 @@ def print_answers(guesses):
 def print_alpha():
     for key in ALPHABET:
         print(ALPHABET[key], end=' ')
+        print()
 
 def play_round(guess, answer, lives):
     letters = []
