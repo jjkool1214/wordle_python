@@ -24,7 +24,7 @@ def check_letter(letter, place, word, dupe):
                         return "\033[1;32;40m " + letter + " "
                     ALPHABET[letter] = "\033[1;33;40m " + letter + " "
                     return "\033[1;33;40m " + letter + " "
-            del ALPHABET[letter]
+            ALPHABET[letter] = ''
             return "\033[1;30;40m " + letter + " "
         elif letter == dupe:
             places = set()
@@ -59,7 +59,7 @@ def print_answers(guesses):
 def print_alpha():
     for key in ALPHABET:
         print(ALPHABET[key], end=' ')
-        print()
+        print("\033[1;37;40m   ", end = '')
 
 def play_round(guess, answer, lives):
     letters = []
